@@ -75,9 +75,11 @@ public class Tests
     Assert.assertNotEquals(msg[5], msg[6]);
     Assert.assertNotEquals(msg[3], msg[5]);
     Character firstRunA = msg[0];
+    Character firstRunB = msg[2];
 
     msg = runTestForBean("beanAsingletonProxyPrototype");
     Assert.assertEquals(firstRunA, msg[0]);
+    Assert.assertNotEquals(firstRunB, msg[2]);
   }
 
   @Test
@@ -87,6 +89,11 @@ public class Tests
     Assert.assertEquals(msg[2], msg[3]);
     Assert.assertEquals(msg[5], msg[6]);
     Assert.assertNotEquals(msg[3], msg[5]);
+    Character firstRunB1 = msg[2];
+    Character firstRunB2 = msg[5];
+    msg = runTestForBean("firstBeanLookup");
+    Assert.assertNotEquals(firstRunB1, msg[2]);
+    Assert.assertEquals(firstRunB2, msg[5]);
   }
 
   @Configuration
